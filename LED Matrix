@@ -1,0 +1,29 @@
+#!/usr/local/bin/python2.7
+import time; # includes time module    
+import math; # includes math module
+
+#use main() to turn the lights on and off in the function determined
+def main():
+  morpheus = [[[False for i in range(8)] for j in range(8)] for k in range(8)]
+  initTime=time.time()
+  totalTicksToRun = 0
+  ticks = time.time()
+  
+  while totalTicksToRun + initTime > ticks:
+    ticks = time.time()
+    sineLights(ticks, initTime)
+  
+  #sineLights makes morpheus [][][] the values for each time
+def sineLights(fticks,finitTime):
+  
+  print fticks - finitTime
+
+
+if __name__ == '__main__':
+  main()
+
+
+#TODO 3d matrix to output matrix function
+#TODO error(lighting discrepancies) checker
+#TODO brightness
+#TODO other display functions
