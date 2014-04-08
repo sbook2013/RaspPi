@@ -4,19 +4,29 @@ import math; # includes math module
 
 #use main() to turn the lights on and off in the function determined
 def main():
-  morpheus = [[[False for i in range(8)] for j in range(8)] for k in range(8)]
-  initTime=time.time()
-  totalTicksToRun = 0
-  ticks = time.time()
+  
+  #initialize all variables
+  morpheus = [[[False for i in range(8)] for j in range(8)] for k in range(8)] #LED storage
+  initTime=time.time() #initial system time
+  totalTicksToRun = 2 #how long to run in seconds
+  ticks = time.time() #initialize ticks before call
+  dutyLength = 0.01 #setting the time to flash for error and brightness
+  
   
   while totalTicksToRun + initTime > ticks:
     ticks = time.time()
-    sineLights(ticks, initTime)
+    checkerLights(ticks, initTime, morpheus)
   
-  #sineLights makes morpheus [][][] the values for each time
-def sineLights(fticks,finitTime):
-  
-  print fticks - finitTime
+  #checkerLights makes morpheus [][][] the values for each time
+  #checkerboard pattern
+def checkerLights(fticks,finitTime, tempArr):
+  for q in range(8):
+    for w in range(8):
+      for e in range(8):
+        if e > math.cos((q/3.5)*3.14)*math.sin((w/3.5)*3.14)/2:
+          tempArr[int((q+fticks)%8)][w][e] = True
+        else:
+          tempArr[int((q+fticks)%8)][w][e] = False
 
 
 if __name__ == '__main__':
@@ -24,6 +34,6 @@ if __name__ == '__main__':
 
 
 #TODO 3d matrix to output matrix function
-#TODO error(lighting discrepancies) checker
+#TODO error(lighting discrepancies) checker (could return 1,2,3...)
 #TODO brightness
 #TODO other display functions
